@@ -1,0 +1,54 @@
+<div class="competition">
+    <div class="container">
+        <div class="page-header">
+            <h1>Competition: {{comp.competition.name}}
+                <small>Total Entries {{comp.competition.entries.length}}</small>
+            </h1>
+            <a ui-sref="landing"><< back</a>
+        </div>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Panel heading</div>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Team Name</th>
+                    <th>User Names</th>
+                    <th>Submitted</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="5">
+                        <h4>Your ranking:</h4>
+                    </td>
+                </tr>
+                <tr class="highlight-my-row"
+                    ng-if="comp.myFirstRow > comp.rowLimit">
+                    <th scope="row">{{comp.myFirstRow}}</th>
+                    <td>{{comp.myFirstEntry.TeamName}}</td>
+                    <td>{{comp.myFirstEntry.UserNames}}</td>
+                    <td>{{comp.myFirstEntry.ScoreFirstSubmittedDate}}</td>
+                    <td><span class="badge">{{comp.myFirstEntry.Score | percentage:1}}</span></td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                    </td>
+                </tr>
+                <tr ng-repeat="entry in comp.competition.entries | limitTo:comp.rowLimit"
+                    ng-class="{'highlight-my-row': entry.is_my_entry}">
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>{{entry.TeamName}}</td>
+                    <td>{{entry.UserNames}}</td>
+                    <td>{{entry.ScoreFirstSubmittedDate}}</td>
+                    <td><span class="badge">{{entry.Score | percentage:1}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

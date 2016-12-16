@@ -1,0 +1,9 @@
+.landing {
+  margin-top: 20px;
+}
+.landing .comp-link {
+  cursor: pointer;
+}
+.landing .comp-link:hover {
+  background-color: lightblue;
+}
