@@ -1,0 +1,5 @@
+SQLAlchemy
+Flask
+Flask-Injector
+Flask-SQLAlchemy
+psycopg2
