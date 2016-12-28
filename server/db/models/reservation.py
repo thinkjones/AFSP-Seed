@@ -9,9 +9,9 @@ class Reservation(Base):
     id = Column(Integer, primary_key=True)
     reserved = Column(DateTime, nullable=False)
     due_back = Column(DateTime, nullable=False)
-    member_id = Column(Integer, ForeignKey('member.id'), nullable=False)
+    member_id = Column(Integer, ForeignKey('members.id'), nullable=False)
     member = relationship("Member")
-    book_id = Column(Integer, ForeignKey('book.id'), nullable=False)
+    book_id = Column(Integer, ForeignKey('books.id'), nullable=False)
     book = relationship("Book")
 
     def __init__(self, name=None, email=None):

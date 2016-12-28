@@ -1,5 +1,5 @@
 from flask import Blueprint, Flask, send_from_directory, request
-from book_handlers import coach_blueprint
+from book_handlers import book_blueprint
 from flask_injector import FlaskInjector
 from injector import singleton
 from flask import Flask
@@ -10,7 +10,7 @@ from db.database import db_session, init_db
 app = Flask(__name__)
 app.static_folder = '../client'
 app.static_url_path = ''
-app.register_blueprint(coach_blueprint)
+app.register_blueprint(book_blueprint)
 
 
 @app.route('/')

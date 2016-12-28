@@ -1,0 +1,2 @@
+alias morning='source venv/bin/activate'
+alias runapp='export FLASK_APP=server/server.py && python -m flask run'
