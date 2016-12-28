@@ -1,10 +1,10 @@
 from flask import Blueprint, Flask, send_from_directory, request
-from coach_handlers import coach_blueprint
+from book_handlers import coach_blueprint
 from flask_injector import FlaskInjector
 from injector import singleton
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from db.models.coach import Coach
+from db.models.member import Member
 from db.database import db_session, init_db
 
 app = Flask(__name__)
@@ -22,6 +22,7 @@ def route_file():
 def send_app_files(filename):
     return send_from_directory(app.static_folder + '/', filename)
 
+
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     db_session.remove()
@@ -30,11 +31,13 @@ def shutdown_session(exception=None):
 def configure(binder):
     binder.bind(SQLAlchemy, to=db_session, scope=singleton)
 
-def install_coaches():
+
+def install_books():
     init_db()
-    c = Coach('admin', 'admin@localhost')
-    db_session.add(c)
+    member = Member('admin', 'admin@localhost')
+    db_session.add(member)
     db_session.commit()
 
+
 FlaskInjector(app=app, modules=[configure], use_annotations=True)
-install_coaches()
+install_books()

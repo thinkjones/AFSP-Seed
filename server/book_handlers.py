@@ -3,13 +3,13 @@ from flask import Blueprint, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from injector import inject
 
-coach_blueprint = Blueprint('coach_blueprint', __name__)
+book_blueprint = Blueprint('book_blueprint', __name__)
 logger = logging.getLogger(__name__)
 
 
-@coach_blueprint.route('/api/coaches', methods=['GET'])
+@book_blueprint.route('/api/books', methods=['GET'])
 @inject(db_session=SQLAlchemy)
-def get_all_coaches(db_session):
+def get_all_books(db_session):
     return jsonify({'test': 'gene'})
 
 
